@@ -149,6 +149,47 @@
       div.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
     }
 
+    // --- API Health Check & Fallback ---
+
+    let apiAvailable = true;
+    let mockMode = false;
+    async function checkApiHealth() {
+      try {
+        const res = await fetch(`${API_BASE}/health`);
+        apiAvailable = res.ok;
+      } catch {
+        apiAvailable = false;
+      }
+      if (!apiAvailable) {
+        mockMode = true;
+        showGlobalApiError();
+      }
+    }
+
+    function showGlobalApiError() {
+      let errDiv = document.getElementById('api-error-banner');
+      if (!errDiv) {
+        errDiv = document.createElement('div');
+        errDiv.id = 'api-error-banner';
+        errDiv.style = 'background:#fee2e2;color:#b91c1c;padding:1rem 1.5rem;border-radius:0.5rem;margin-bottom:1.5rem;font-weight:bold;text-align:center;';
+        errDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Unable to reach backend API. <b>Demo is in mock mode.</b> All data is simulated.';
+        document.querySelector('.container').prepend(errDiv);
+      }
+    }
+
+    // Check API health on page load
+    checkApiHealth();
+
+    // --- Mock Data ---
+    const mockJwt = 'mock.jwt.token.1234567890';
+    const mockProjects = [
+      { id: '1', name: 'Demo Project', description: 'A sample project', owner: 'demo@user.com' },
+      { id: '2', name: 'Test Project', description: 'Another example', owner: 'test@user.com' }
+    ];
+    function getMockProject(id) {
+      return mockProjects.find(p => p.id === id) || { id, name: 'Unknown', description: 'No data', owner: 'n/a' };
+    }
+
     // --- Auth: Register ---
     document.getElementById('register-form').onsubmit = async function(e) {
       e.preventDefault();
@@ -159,6 +200,11 @@
       const role = document.getElementById('register-role').value;
       const respDiv = document.getElementById('register-response');
       showLoading(respDiv);
+      if (mockMode) {
+        setTimeout(() => showSuccess(respDiv, 'Registration successful! (mocked)'), 500);
+        return;
+      }
+      if (!apiAvailable) return showError(respDiv, 'API is unreachable. Please start the backend.');
       try {
         const res = await fetch(`${API_BASE}/auth/register`, {
           method: 'POST',
@@ -186,6 +232,24 @@
       const password = document.getElementById('login-password').value;
       const respDiv = document.getElementById('token-label');
       showLoading(respDiv);
+      if (mockMode) {
+        jwtToken = mockJwt;
+        respDiv.style.display = '';
+        document.getElementById('jwt-token').textContent = jwtToken.slice(0, 32) + '...';
+        showSuccess(respDiv, 'Login successful! (mocked) JWT token ready.');
+        setTimeout(() => {
+          respDiv.style.background = '';
+          respDiv.style.color = '#4f46e5';
+          respDiv.innerHTML = 'JWT Token: <span id="jwt-token">' + jwtToken.slice(0,32) + '...</span> <button class="copy-btn" id="copy-token">Copy</button>';
+          document.getElementById('copy-token').onclick = function() {
+            navigator.clipboard.writeText(jwtToken);
+            this.textContent = 'Copied!';
+            setTimeout(() => { this.textContent = 'Copy'; }, 1200);
+          };
+        }, 1200);
+        return;
+      }
+      if (!apiAvailable) return showError(respDiv, 'API is unreachable. Please start the backend.');
       try {
         const res = await fetch(`${API_BASE}/auth/login`, {
           method: 'POST',
@@ -237,6 +301,16 @@
       showLoading(respDiv);
       let url = `${API_BASE}/projects?pageNumber=${pageNumber}&pageSize=${pageSize}`;
       if (searchTerm) url += `&searchTerm=${encodeURIComponent(searchTerm)}`;
+      if (mockMode) {
+        setTimeout(() => showResponse(respDiv, {
+          pageNumber: 1,
+          pageSize: 10,
+          total: mockProjects.length,
+          items: mockProjects
+        }), 500);
+        return;
+      }
+      if (!apiAvailable) return showError(respDiv, 'API is unreachable. Please start the backend.');
       try {
         const res = await fetch(url, { headers: authHeaders() });
         const data = await res.json();
@@ -257,6 +331,11 @@
       const respDiv = document.getElementById('get-project-response');
       if (!id) return showError(respDiv, 'Project ID required');
       showLoading(respDiv);
+      if (mockMode) {
+        setTimeout(() => showResponse(respDiv, getMockProject(id)), 500);
+        return;
+      }
+      if (!apiAvailable) return showError(respDiv, 'API is unreachable. Please start the backend.');
       try {
         const res = await fetch(`${API_BASE}/projects/${id}`, { headers: authHeaders() });
         const data = await res.json();
@@ -278,6 +357,13 @@
       try { body = JSON.parse(document.getElementById('create-project-data').value); }
       catch { return showError(respDiv, 'Invalid JSON'); }
       showLoading(respDiv);
+      if (mockMode) {
+        const newProj = { ...body, id: (mockProjects.length+1).toString(), owner: 'mock@user.com' };
+        mockProjects.push(newProj);
+        setTimeout(() => showResponse(respDiv, newProj), 500);
+        return;
+      }
+      if (!apiAvailable) return showError(respDiv, 'API is unreachable. Please start the backend.');
       try {
         const res = await fetch(`${API_BASE}/projects`, {
           method: 'POST',
@@ -304,6 +390,13 @@
       try { body = JSON.parse(document.getElementById('update-project-data').value); }
       catch { return showError(respDiv, 'Invalid JSON'); }
       showLoading(respDiv);
+      if (mockMode) {
+        const idx = mockProjects.findIndex(p => p.id === id);
+        if (idx >= 0) Object.assign(mockProjects[idx], body);
+        setTimeout(() => showSuccess(respDiv, 'Project updated successfully. (mocked)'), 500);
+        return;
+      }
+      if (!apiAvailable) return showError(respDiv, 'API is unreachable. Please start the backend.');
       try {
         const res = await fetch(`${API_BASE}/projects/${id}`, {
           method: 'PUT',
@@ -327,6 +420,13 @@
       const id = document.getElementById('delete-project-id').value;
       const respDiv = document.getElementById('delete-project-response');
       showLoading(respDiv);
+      if (mockMode) {
+        const idx = mockProjects.findIndex(p => p.id === id);
+        if (idx >= 0) mockProjects.splice(idx, 1);
+        setTimeout(() => showSuccess(respDiv, 'Project deleted successfully. (mocked)'), 500);
+        return;
+      }
+      if (!apiAvailable) return showError(respDiv, 'API is unreachable. Please start the backend.');
       try {
         const res = await fetch(`${API_BASE}/projects/${id}`, {
           method: 'DELETE',
