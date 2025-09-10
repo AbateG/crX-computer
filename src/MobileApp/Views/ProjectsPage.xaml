@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CR_COMPUTER.MobileApp.Views.ProjectsPage"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="ProjectsListView"
+                      ItemsSource="{Binding Projects}"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="true"
+                      RefreshCommand="{Binding LoadProjectsCommand}"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      IsPullToRefreshEnabled="true"
+                      ItemSelected="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Name}"
+                                       FontAttributes="Bold"
+                                       FontSize="Medium" />
+                                <Label Text="{Binding Description}"
+                                       FontSize="Small"
+                                       TextColor="Gray" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Status: "
+                                           FontSize="Small" />
+                                    <Label Text="{Binding Status}"
+                                           FontSize="Small"
+                                           TextColor="Blue" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Progress: "
+                                           FontSize="Small" />
+                                    <Label Text="{Binding ProgressPercentage, StringFormat='{0:F1}%'}"
+                                           FontSize="Small"
+                                           TextColor="Green" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

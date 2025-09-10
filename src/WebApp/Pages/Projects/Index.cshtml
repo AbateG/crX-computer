@@ -1,0 +1,112 @@
+@page
+@model CR_COMPUTER.WebApp.Pages.Projects.IndexModel
+@{
+    ViewData["Title"] = "Projects";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Projects Dashboard</h3>
+                    <div class="card-tools">
+                        <a asp-page="Create" class="btn btn-primary btn-sm">
+                            <i class="fas fa-plus"></i> New Project
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Projects table will be populated here -->
+                    <div id="projectsTable" class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Client</th>
+                                    <th>Status</th>
+                                    <th>Progress</th>
+                                    <th>Due Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="projectsTableBody">
+                                <!-- Projects will be loaded via AJAX -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            loadProjects();
+        });
+
+        function loadProjects() {
+            $.ajax({
+                url: '/api/projects',
+                method: 'GET',
+                success: function (data) {
+                    renderProjects(data.items);
+                },
+                error: function () {
+                    $('#projectsTableBody').html('<tr><td colspan="6" class="text-center text-danger">Error loading projects</td></tr>');
+                }
+            });
+        }
+
+        function renderProjects(projects) {
+            if (!projects || projects.length === 0) {
+                $('#projectsTableBody').html('<tr><td colspan="6" class="text-center">No projects found</td></tr>');
+                return;
+            }
+
+            var html = '';
+            projects.forEach(function (project) {
+                var progressClass = getProgressClass(project.progressPercentage);
+                var statusClass = getStatusClass(project.status);
+
+                html += '<tr>';
+                html += '<td><a href="/Projects/Details/' + project.id + '">' + project.name + '</a></td>';
+                html += '<td>' + (project.clientName || 'N/A') + '</td>';
+                html += '<td><span class="badge ' + statusClass + '">' + project.status + '</span></td>';
+                html += '<td>';
+                html += '<div class="progress">';
+                html += '<div class="progress-bar ' + progressClass + '" style="width: ' + project.progressPercentage + '%">';
+                html += project.progressPercentage.toFixed(1) + '%';
+                html += '</div>';
+                html += '</div>';
+                html += '</td>';
+                html += '<td>' + (project.dueDate ? new Date(project.dueDate).toLocaleDateString() : 'N/A') + '</td>';
+                html += '<td>';
+                html += '<a href="/Projects/Edit/' + project.id + '" class="btn btn-sm btn-outline-primary">Edit</a>';
+                html += '<a href="/Projects/Details/' + project.id + '" class="btn btn-sm btn-outline-info ml-1">Details</a>';
+                html += '</td>';
+                html += '</tr>';
+            });
+
+            $('#projectsTableBody').html(html);
+        }
+
+        function getProgressClass(percentage) {
+            if (percentage >= 80) return 'bg-success';
+            if (percentage >= 50) return 'bg-warning';
+            return 'bg-danger';
+        }
+
+        function getStatusClass(status) {
+            switch (status) {
+                case 'Completed': return 'badge-success';
+                case 'InProgress': return 'badge-primary';
+                case 'OnHold': return 'badge-warning';
+                case 'Cancelled': return 'badge-danger';
+                default: return 'badge-secondary';
+            }
+        }
+    </script>
+}

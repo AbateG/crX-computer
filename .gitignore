@@ -1,0 +1,20 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.swp
+*.DS_Store
+.vs/
+.env
+.env.*
+appsettings.*.json
+secrets.json
+*.log
+TestResults/
+*.ncrunch*
+*.localhistory/
+*.idea/
+*.vscode/
