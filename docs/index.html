@@ -1,48 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CR COMPUTER - Project Showcase</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f7f7f7; }
-        .container { max-width: 800px; margin: 40px auto; background: #fff; padding: 32px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        h1 { color: #2c3e50; }
-        ul { margin: 0 0 1em 1.5em; }
-        a { color: #007acc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .footer { margin-top: 2em; color: #888; font-size: 0.95em; }
-    </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CR COMPUTER - Project Showcase</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+                body { background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%); }
+                .navbar-brand { font-weight: bold; letter-spacing: 2px; }
+                .hero { background: linear-gradient(120deg, #6366f1 0%, #60a5fa 100%); color: #fff; padding: 60px 0 40px 0; text-align: center; }
+                .hero h1 { font-size: 3rem; font-weight: 700; }
+                .hero p { font-size: 1.3rem; margin-top: 1rem; }
+                .section-title { color: #3730a3; font-weight: 600; margin-bottom: 1.5rem; }
+                .feature-icon { font-size: 2rem; color: #6366f1; }
+                .card { border: none; border-radius: 1rem; box-shadow: 0 2px 12px rgba(99,102,241,0.08); }
+                .footer { background: #3730a3; color: #fff; text-align: center; padding: 1.5rem 0 0.5rem 0; margin-top: 3rem; border-radius: 1rem 1rem 0 0; }
+                .nav-link.active { font-weight: bold; color: #6366f1 !important; }
+                .contact-form input, .contact-form textarea { border-radius: 0.5rem; }
+                .api-demo-img { max-width: 100%; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(99,102,241,0.12); }
+        </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
-        <h1>CR COMPUTER</h1>
-        <p>A modular, scalable system for managing projects, tasks, and resources.</p>
-        <h2>Features</h2>
-        <ul>
-            <li>RESTful API (ASP.NET Core)</li>
-            <li>Clean architecture (Domain, Application, Infrastructure, API)</li>
-            <li>Entity Framework Core migrations</li>
-            <li>Dependency Injection</li>
-            <li>Test projects (unit, integration, E2E)</li>
-        </ul>
-        <h2>Get Started</h2>
-        <ol>
-            <li>Clone the repository: <code>git clone https://github.com/AbateG/crX-computer.git</code></li>
-            <li>See the <a href="../README.md">README</a> for setup instructions.</li>
-        </ol>
-        <h2>Documentation</h2>
-        <ul>
-            <li><a href="../src/Build/Docs/api-docs.md">API Docs</a></li>
-            <li><a href="../src/Build/Docs/architecture.md">Architecture</a></li>
-            <li><a href="../src/Build/Docs/setup.md">Setup</a></li>
-            <li><a href="../src/Build/Docs/ci-cd.md">CI/CD</a></li>
-            <li><a href="../src/Build/Docs/migrations.md">Migrations</a></li>
-            <li><a href="../src/Build/Docs/test-strategy.md">Test Strategy</a></li>
-        </ul>
-        <div class="footer">
-            &copy; 2025 AbateG &mdash; <a href="https://github.com/AbateG/crX-computer">View on GitHub</a>
+        <a class="navbar-brand" href="#">CR COMPUTER</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#features">Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="#demo">Demo</a></li>
+                <li class="nav-item"><a class="nav-link" href="#docs">Docs</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
         </div>
     </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <h1>CR COMPUTER</h1>
+        <p>A modular, scalable system for managing projects, tasks, and resources.<br>Built with ASP.NET Core, Clean Architecture, and modern best practices.</p>
+        <a href="#demo" class="btn btn-light btn-lg mt-3 shadow">See Live Demo</a>
+    </div>
+</section>
+
+<section id="features" class="py-5">
+    <div class="container">
+        <h2 class="section-title">Features</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card p-4 h-100">
+                    <div class="feature-icon mb-3">🔗</div>
+                    <h5>RESTful API</h5>
+                    <p>Robust, well-documented API for seamless integration and automation.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100">
+                    <div class="feature-icon mb-3">🏗️</div>
+                    <h5>Clean Architecture</h5>
+                    <p>Separation of concerns with Domain, Application, Infrastructure, and API layers.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100">
+                    <div class="feature-icon mb-3">⚡</div>
+                    <h5>Fast & Scalable</h5>
+                    <p>Optimized for performance and scalability with .NET 8 and modern patterns.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100">
+                    <div class="feature-icon mb-3">🧪</div>
+                    <h5>Comprehensive Testing</h5>
+                    <p>Unit, integration, and E2E tests ensure reliability and maintainability.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100">
+                    <div class="feature-icon mb-3">🔒</div>
+                    <h5>Secure</h5>
+                    <p>Modern authentication, authorization, and best security practices.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100">
+                    <div class="feature-icon mb-3">📦</div>
+                    <h5>Easy Deployment</h5>
+                    <p>Ready for cloud or on-premise deployment with CI/CD support.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="demo" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title">Live Demo & API Showcase</h2>
+        <p>Try the API locally or explore the documentation below. (Online demo coming soon!)</p>
+        <img src="https://raw.githubusercontent.com/AbateG/crX-computer/main/src/Build/Docs/api-demo-sample.png" alt="API Demo Screenshot" class="api-demo-img my-4">
+        <div>
+            <a href="https://github.com/AbateG/crX-computer" class="btn btn-primary me-2">View on GitHub</a>
+            <a href="../src/Build/Docs/api-docs.md" class="btn btn-outline-secondary">API Docs</a>
+        </div>
+    </div>
+</section>
+
+<section id="docs" class="py-5">
+    <div class="container">
+        <h2 class="section-title">Documentation</h2>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="../README.md">Project README</a></li>
+            <li class="list-group-item"><a href="../src/Build/Docs/api-docs.md">API Docs</a></li>
+            <li class="list-group-item"><a href="../src/Build/Docs/architecture.md">Architecture</a></li>
+            <li class="list-group-item"><a href="../src/Build/Docs/setup.md">Setup</a></li>
+            <li class="list-group-item"><a href="../src/Build/Docs/ci-cd.md">CI/CD</a></li>
+            <li class="list-group-item"><a href="../src/Build/Docs/migrations.md">Migrations</a></li>
+            <li class="list-group-item"><a href="../src/Build/Docs/test-strategy.md">Test Strategy</a></li>
+        </ul>
+    </div>
+</section>
+
+<section id="about" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title">About</h2>
+        <p><strong>CR COMPUTER</strong> is an open-source project by AbateG, designed to help teams manage projects, tasks, and resources efficiently. Built with modern .NET technologies and best practices, it’s ideal for organizations seeking a robust, extensible, and production-ready solution.</p>
+    </div>
+</section>
+
+<section id="contact" class="py-5">
+    <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <form class="contact-form" action="https://formspree.io/f/mwkzqjzv" method="POST">
+            <div class="mb-3">
+                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="mb-3">
+                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control" name="message" rows="4" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        &copy; 2025 AbateG &mdash; <a href="https://github.com/AbateG/crX-computer" class="text-white">View on GitHub</a>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
