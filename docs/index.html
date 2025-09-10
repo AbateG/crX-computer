@@ -48,11 +48,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active" href="#features">Features</a></li>
-                <li class="nav-item"><a class="nav-link" href="#demo">Demo</a></li>
-                <li class="nav-item"><a class="nav-link" href="#docs">Docs</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+            <li class="nav-item"><a class="nav-link" href="demo.html">Demo</a></li>
+            <li class="nav-item"><a class="nav-link" href="docs/index.html">Docs</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
         </div>
     </div>
@@ -70,52 +70,10 @@
 </section>
 <!-- Animated Feature Highlights -->
 <section id="features" class="py-5">
-    <div class="container">
+    <div class="container text-center">
         <h2 class="section-title animate__animated animate__fadeInLeft">Why Orchestrix?</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card p-4 h-100 animate__animated animate__zoomIn">
-                    <div class="feature-icon mb-3">🔗</div>
-                    <h5>RESTful API</h5>
-                    <p>Robust, well-documented API for seamless integration and automation.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100 animate__animated animate__zoomIn animate__delay-1s">
-                    <div class="feature-icon mb-3">🏗️</div>
-                    <h5>Clean Architecture</h5>
-                    <p>Separation of concerns with Domain, Application, Infrastructure, and API layers.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100 animate__animated animate__zoomIn animate__delay-2s">
-                    <div class="feature-icon mb-3">⚡</div>
-                    <h5>Fast & Scalable</h5>
-                    <p>Optimized for performance and scalability with .NET 8 and modern patterns.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100 animate__animated animate__zoomIn animate__delay-3s">
-                    <div class="feature-icon mb-3">🧪</div>
-                    <h5>Comprehensive Testing</h5>
-                    <p>Unit, integration, and E2E tests ensure reliability and maintainability.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100 animate__animated animate__zoomIn animate__delay-4s">
-                    <div class="feature-icon mb-3">🔒</div>
-                    <h5>Secure</h5>
-                    <p>Modern authentication, authorization, and best security practices.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 h-100 animate__animated animate__zoomIn animate__delay-5s">
-                    <div class="feature-icon mb-3">📦</div>
-                    <h5>Easy Deployment</h5>
-                    <p>Ready for cloud or on-premise deployment with CI/CD support.</p>
-                </div>
-            </div>
-        </div>
+        <p class="lead">Discover all the platform's capabilities on the <a href="features.html">Features page</a>.</p>
+        <a href="features.html" class="btn btn-primary btn-lg mt-3">Explore Features</a>
     </div>
 </section>
 <!-- Use Cases Section -->
@@ -257,54 +215,34 @@
 </section>
 
 <section id="demo" class="py-5 bg-light">
-    <div class="container">
+    <div class="container text-center">
         <h2 class="section-title">Live Demo & API Showcase</h2>
-        <p>Try the API locally or explore the documentation below. (Online demo coming soon!)</p>
-        <img src="https://placehold.co/600x350/4f46e5/fff?text=API+Demo+Coming+Soon" alt="API Demo Screenshot" class="api-demo-img my-4">
-        <div>
-            <a href="https://github.com/AbateG/crX-computer" class="btn btn-primary me-2">View on GitHub</a>
-            <a href="../src/Build/Docs/api-docs.md" class="btn btn-outline-secondary">API Docs</a>
-        </div>
+        <p class="lead">Try the API locally or explore the documentation below. (Online demo coming soon!)</p>
+        <a href="demo.html" class="btn btn-primary btn-lg mt-3">Go to Demo</a>
     </div>
 </section>
 
 <section id="docs" class="py-5">
-    <div class="container">
+    <div class="container text-center">
         <h2 class="section-title">Documentation</h2>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><a href="../README.md">Project README</a></li>
-            <li class="list-group-item"><a href="../src/Build/Docs/api-docs.md">API Docs</a></li>
-            <li class="list-group-item"><a href="../src/Build/Docs/architecture.md">Architecture</a></li>
-            <li class="list-group-item"><a href="../src/Build/Docs/setup.md">Setup</a></li>
-            <li class="list-group-item"><a href="../src/Build/Docs/ci-cd.md">CI/CD</a></li>
-            <li class="list-group-item"><a href="../src/Build/Docs/migrations.md">Migrations</a></li>
-            <li class="list-group-item"><a href="../src/Build/Docs/test-strategy.md">Test Strategy</a></li>
-        </ul>
+        <p class="lead">Find all guides and references on the <a href="docs/index.html">Documentation page</a>.</p>
+        <a href="docs/index.html" class="btn btn-outline-primary btn-lg mt-3">View Documentation</a>
     </div>
 </section>
 
 <section id="about" class="py-5 bg-light">
-    <div class="container">
+    <div class="container text-center">
         <h2 class="section-title">About</h2>
-        <p><strong>Orchestrix</strong> is an open-source orchestration platform by AbateG, designed to help teams manage projects, tasks, and resources efficiently. Built with modern .NET technologies and best practices, it’s ideal for organizations seeking a robust, extensible, and production-ready solution.</p>
+        <p class="lead"><strong>Orchestrix</strong> is an open-source orchestration platform by AbateG, designed to help teams manage projects, tasks, and resources efficiently.</p>
+        <a href="about.html" class="btn btn-outline-secondary btn-lg mt-3">Learn More</a>
     </div>
 </section>
 
 <section id="contact" class="py-5">
-    <div class="container">
+    <div class="container text-center">
         <h2 class="section-title">Contact</h2>
-        <form class="contact-form" action="https://formspree.io/f/mwkzqjzv" method="POST">
-            <div class="mb-3">
-                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
-            </div>
-            <div class="mb-3">
-                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
-            </div>
-            <div class="mb-3">
-                <textarea class="form-control" name="message" rows="4" placeholder="Your Message" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
+        <p class="lead">Questions or feedback? Reach out on the <a href="contact.html">Contact page</a>.</p>
+        <a href="contact.html" class="btn btn-outline-primary btn-lg mt-3">Contact Us</a>
     </div>
 </section>
 

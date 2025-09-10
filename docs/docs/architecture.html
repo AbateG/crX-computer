@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orchestrix - Architecture</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>body{background:#f8fafc;} .section-title{color:#4f46e5;font-weight:700;letter-spacing:1px;} .navbar-brand{font-weight:bold;letter-spacing:2px;color:#4f46e5!important;font-size:1.6rem;} .footer{background:#4f46e5;color:#fff;text-align:center;padding:2rem 0 1rem 0;margin-top:3rem;border-radius:1rem 1rem 0 0;font-size:1.1rem;} .nav-link.active,.nav-link:focus,.nav-link:hover{font-weight:bold;color:#f59e42!important;} pre{background:#f1f5f9;padding:1em;border-radius:0.5em;overflow-x:auto;} </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html">Orchestrix</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="../features.html">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="../demo.html">Demo</a></li>
+        <li class="nav-item"><a class="nav-link active" href="index.html">Docs</a></li>
+        <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <h1 class="section-title mt-4 mb-4">Architecture</h1>
+  <p>Orchestrix uses Clean Architecture principles for maintainability and scalability. The solution is organized into:</p>
+  <ul>
+    <li><b>Domain</b>: Core business logic and entities</li>
+    <li><b>Application</b>: Use cases, commands, queries, and validation</li>
+    <li><b>Infrastructure</b>: Data access, external services, and integrations</li>
+    <li><b>API</b>: RESTful endpoints, controllers, and presentation</li>
+  </ul>
+  <pre>
++-------------------+
+|      API          |
++-------------------+
+|  Application      |
++-------------------+
+|    Domain         |
++-------------------+
+| Infrastructure    |
++-------------------+
+  </pre>
+</div>
+<footer class="footer mt-5">&copy; 2025 AbateG — Orchestrix</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
