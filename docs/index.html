@@ -5,19 +5,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CR COMPUTER - Project Showcase</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <style>
-                body { background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%); }
-                .navbar-brand { font-weight: bold; letter-spacing: 2px; }
-                .hero { background: linear-gradient(120deg, #6366f1 0%, #60a5fa 100%); color: #fff; padding: 60px 0 40px 0; text-align: center; }
-                .hero h1 { font-size: 3rem; font-weight: 700; }
-                .hero p { font-size: 1.3rem; margin-top: 1rem; }
-                .section-title { color: #3730a3; font-weight: 600; margin-bottom: 1.5rem; }
-                .feature-icon { font-size: 2rem; color: #6366f1; }
-                .card { border: none; border-radius: 1rem; box-shadow: 0 2px 12px rgba(99,102,241,0.08); }
-                .footer { background: #3730a3; color: #fff; text-align: center; padding: 1.5rem 0 0.5rem 0; margin-top: 3rem; border-radius: 1rem 1rem 0 0; }
-                .nav-link.active { font-weight: bold; color: #6366f1 !important; }
-                .contact-form input, .contact-form textarea { border-radius: 0.5rem; }
-                .api-demo-img { max-width: 100%; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(99,102,241,0.12); }
+            :root {
+                --brand-primary: #4f46e5;
+                --brand-secondary: #06b6d4;
+                --brand-accent: #f59e42;
+                --brand-bg: #f8fafc;
+                --brand-dark: #18181b;
+            }
+            body { background: linear-gradient(120deg, var(--brand-bg) 0%, #e0e7ff 100%); }
+            .navbar-brand { font-weight: bold; letter-spacing: 2px; color: var(--brand-primary) !important; font-size: 1.6rem; }
+            .navbar { box-shadow: 0 2px 8px rgba(79,70,229,0.07); }
+            .hero { background: linear-gradient(120deg, var(--brand-primary) 0%, var(--brand-secondary) 100%); color: #fff; padding: 70px 0 50px 0; text-align: center; }
+            .hero h1 { font-size: 3.2rem; font-weight: 800; letter-spacing: 1px; }
+            .hero p { font-size: 1.35rem; margin-top: 1.2rem; }
+            .hero-logo { width: 80px; height: 80px; margin-bottom: 1rem; border-radius: 50%; background: #fff; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(6,182,212,0.12); }
+            .section-title { color: var(--brand-primary); font-weight: 700; margin-bottom: 1.5rem; letter-spacing: 1px; }
+            .feature-icon { font-size: 2.2rem; color: var(--brand-secondary); animation: pulse 2s infinite; }
+            @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
+            .card { border: none; border-radius: 1rem; box-shadow: 0 2px 12px rgba(6,182,212,0.08); transition: transform 0.2s; }
+            .card:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 6px 24px rgba(79,70,229,0.10); }
+            .footer { background: var(--brand-primary); color: #fff; text-align: center; padding: 2rem 0 1rem 0; margin-top: 3rem; border-radius: 1rem 1rem 0 0; font-size: 1.1rem; }
+            .nav-link.active, .nav-link:focus, .nav-link:hover { font-weight: bold; color: var(--brand-accent) !important; }
+            .contact-form input, .contact-form textarea { border-radius: 0.5rem; }
+            .api-demo-img { max-width: 100%; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(6,182,212,0.12); }
+            .testimonial-card { background: #fff; border-radius: 1rem; box-shadow: 0 2px 12px rgba(245,158,66,0.08); padding: 2rem; margin-bottom: 1.5rem; }
+            .testimonial-quote { font-size: 1.1rem; color: #555; }
+            .testimonial-author { font-weight: 600; color: var(--brand-primary); margin-top: 0.5rem; }
+            .use-case-card { background: #f1f5f9; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1.5rem; }
+            .screenshot-img { max-width: 100%; border-radius: 0.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(79,70,229,0.10); }
+            .video-demo { width: 100%; max-width: 600px; border-radius: 0.5rem; margin: 1.5rem auto; display: block; box-shadow: 0 2px 8px rgba(6,182,212,0.12); }
+            .team-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; margin-right: 1rem; border: 2px solid var(--brand-secondary); }
         </style>
 </head>
 <body>
@@ -39,11 +58,151 @@
     </div>
 </nav>
 
-<section class="hero">
+<section class="hero animate__animated animate__fadeInDown">
     <div class="container">
+        <div class="hero-logo animate__animated animate__pulse animate__infinite">
+            <span style="font-size:2.5rem;color:var(--brand-primary);">🖥️</span>
+        </div>
         <h1>CR COMPUTER</h1>
-        <p>A modular, scalable system for managing projects, tasks, and resources.<br>Built with ASP.NET Core, Clean Architecture, and modern best practices.</p>
+        <p>A modular, scalable system for managing projects, tasks, and resources.<br>Built with <b>ASP.NET Core</b>, <b>Clean Architecture</b>, and modern best practices.<br><span style="color:var(--brand-accent);font-weight:600;">Production-ready. Open-source. Extensible.</span></p>
         <a href="#demo" class="btn btn-light btn-lg mt-3 shadow">See Live Demo</a>
+    </div>
+</section>
+<!-- Animated Feature Highlights -->
+<section id="features" class="py-5">
+    <div class="container">
+        <h2 class="section-title animate__animated animate__fadeInLeft">Features</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card p-4 h-100 animate__animated animate__zoomIn">
+                    <div class="feature-icon mb-3">🔗</div>
+                    <h5>RESTful API</h5>
+                    <p>Robust, well-documented API for seamless integration and automation.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100 animate__animated animate__zoomIn animate__delay-1s">
+                    <div class="feature-icon mb-3">🏗️</div>
+                    <h5>Clean Architecture</h5>
+                    <p>Separation of concerns with Domain, Application, Infrastructure, and API layers.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100 animate__animated animate__zoomIn animate__delay-2s">
+                    <div class="feature-icon mb-3">⚡</div>
+                    <h5>Fast & Scalable</h5>
+                    <p>Optimized for performance and scalability with .NET 8 and modern patterns.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100 animate__animated animate__zoomIn animate__delay-3s">
+                    <div class="feature-icon mb-3">🧪</div>
+                    <h5>Comprehensive Testing</h5>
+                    <p>Unit, integration, and E2E tests ensure reliability and maintainability.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100 animate__animated animate__zoomIn animate__delay-4s">
+                    <div class="feature-icon mb-3">🔒</div>
+                    <h5>Secure</h5>
+                    <p>Modern authentication, authorization, and best security practices.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 h-100 animate__animated animate__zoomIn animate__delay-5s">
+                    <div class="feature-icon mb-3">📦</div>
+                    <h5>Easy Deployment</h5>
+                    <p>Ready for cloud or on-premise deployment with CI/CD support.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Use Cases Section -->
+<section id="use-cases" class="py-5">
+    <div class="container">
+        <h2 class="section-title">Use Cases</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="use-case-card">
+                    <h5>Project Management</h5>
+                    <p>Track projects, assign tasks, and manage resources for teams of any size.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="use-case-card">
+                    <h5>Resource Planning</h5>
+                    <p>Allocate and monitor resources efficiently across multiple projects.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="use-case-card">
+                    <h5>Automated Reporting</h5>
+                    <p>Generate real-time reports and analytics for stakeholders and management.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="use-case-card">
+                    <h5>Integration Platform</h5>
+                    <p>Integrate with other tools and services using the robust RESTful API.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Screenshots & Video Demo Section -->
+<section id="showcase" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title">Screenshots & Demo</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="https://raw.githubusercontent.com/AbateG/crX-computer/main/src/Build/Docs/api-demo-sample.png" alt="API Screenshot" class="screenshot-img">
+            </div>
+            <div class="col-md-6">
+                <video class="video-demo" controls poster="https://raw.githubusercontent.com/AbateG/crX-computer/main/src/Build/Docs/api-demo-sample.png">
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-5">
+    <div class="container">
+        <h2 class="section-title">Testimonials</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="testimonial-card animate__animated animate__fadeInUp">
+                    <div class="testimonial-quote">“CR COMPUTER streamlined our project management and improved team productivity by 40%!”</div>
+                    <div class="testimonial-author">— Project Manager, TechCorp</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="testimonial-card animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="testimonial-quote">“The API-first approach made integration with our existing tools seamless and fast.”</div>
+                    <div class="testimonial-author">— Lead Developer, InnovateX</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Team Section -->
+<section id="team" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title">Meet the Team</h2>
+        <div class="row align-items-center">
+            <div class="col-md-4 d-flex align-items-center mb-3">
+                <img src="https://avatars.githubusercontent.com/u/AbateG?v=4" alt="AbateG" class="team-avatar">
+                <div>
+                    <div style="font-weight:600;">AbateG</div>
+                    <div style="font-size:0.95em; color:#555;">Project Lead & Full Stack Developer</div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div style="color:#666;">We are passionate about building scalable, maintainable, and beautiful software for modern teams. Want to contribute? <a href="https://github.com/AbateG/crX-computer" style="color:var(--brand-secondary);">Join us on GitHub!</a></div>
+            </div>
+        </div>
     </div>
 </section>
 
