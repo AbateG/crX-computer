@@ -10,35 +10,177 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <style>
             :root {
-                --brand-primary: #4f46e5;
-                --brand-secondary: #06b6d4;
-                --brand-accent: #f59e42;
-                --brand-bg: #f8fafc;
+                --brand-primary: #6366f1;
+                --brand-secondary: #38bdf8;
+                --brand-accent: #fbbf24;
+                --brand-bg: #f5f7fa;
                 --brand-dark: #18181b;
+                --brand-gradient: linear-gradient(120deg, #6366f1 0%, #38bdf8 100%);
+                --brand-card: #fff;
+                --brand-shadow: 0 4px 24px rgba(99,102,241,0.10);
             }
-            body { background: linear-gradient(120deg, var(--brand-bg) 0%, #e0e7ff 100%); }
-            .navbar-brand { font-weight: bold; letter-spacing: 2px; color: var(--brand-primary) !important; font-size: 1.6rem; }
-            .navbar { box-shadow: 0 2px 8px rgba(79,70,229,0.07); }
-            .hero { background: linear-gradient(120deg, var(--brand-primary) 0%, var(--brand-secondary) 100%); color: #fff; padding: 70px 0 50px 0; text-align: center; }
-            .hero h1 { font-size: 3.2rem; font-weight: 800; letter-spacing: 1px; }
-            .hero p { font-size: 1.35rem; margin-top: 1.2rem; }
-            .hero-logo { width: 80px; height: 80px; margin-bottom: 1rem; border-radius: 50%; background: #fff; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(6,182,212,0.12); }
-            .section-title { color: var(--brand-primary); font-weight: 700; margin-bottom: 1.5rem; letter-spacing: 1px; }
-            .feature-icon { font-size: 2.2rem; color: var(--brand-secondary); animation: pulse 2s infinite; }
-            @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
-            .card { border: none; border-radius: 1rem; box-shadow: 0 2px 12px rgba(6,182,212,0.08); transition: transform 0.2s; }
-            .card:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 6px 24px rgba(79,70,229,0.10); }
-            .footer { background: var(--brand-primary); color: #fff; text-align: center; padding: 2rem 0 1rem 0; margin-top: 3rem; border-radius: 1rem 1rem 0 0; font-size: 1.1rem; }
-            .nav-link.active, .nav-link:focus, .nav-link:hover { font-weight: bold; color: var(--brand-accent) !important; }
-            .contact-form input, .contact-form textarea { border-radius: 0.5rem; }
-            .api-demo-img { max-width: 100%; border-radius: 0.5rem; box-shadow: 0 2px 8px rgba(6,182,212,0.12); }
-            .testimonial-card { background: #fff; border-radius: 1rem; box-shadow: 0 2px 12px rgba(245,158,66,0.08); padding: 2rem; margin-bottom: 1.5rem; }
-            .testimonial-quote { font-size: 1.1rem; color: #555; }
-            .testimonial-author { font-weight: 600; color: var(--brand-primary); margin-top: 0.5rem; }
-            .use-case-card { background: #f1f5f9; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1.5rem; }
-            .screenshot-img { max-width: 100%; border-radius: 0.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(79,70,229,0.10); }
-            .video-demo { width: 100%; max-width: 600px; border-radius: 0.5rem; margin: 1.5rem auto; display: block; box-shadow: 0 2px 8px rgba(6,182,212,0.12); }
-            .team-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; margin-right: 1rem; border: 2px solid var(--brand-secondary); }
+            body {
+                background: linear-gradient(120deg, #f5f7fa 0%, #e0e7ff 100%);
+                font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+                color: var(--brand-dark);
+            }
+            .navbar-brand {
+                font-weight: bold;
+                letter-spacing: 2px;
+                color: var(--brand-primary) !important;
+                font-size: 2rem;
+                text-shadow: 0 2px 8px rgba(99,102,241,0.10);
+            }
+            .navbar {
+                box-shadow: var(--brand-shadow);
+                background: var(--brand-card);
+            }
+            .nav-link {
+                color: var(--brand-primary) !important;
+                font-weight: 500;
+                font-size: 1.1rem;
+                border-radius: 0.4rem;
+                transition: background 0.2s, color 0.2s;
+            }
+            .nav-link.active, .nav-link:focus, .nav-link:hover {
+                font-weight: bold;
+                color: var(--brand-accent) !important;
+                background: rgba(251,191,36,0.08);
+            }
+            .hero {
+                background: var(--brand-gradient);
+                color: #fff;
+                padding: 80px 0 60px 0;
+                text-align: center;
+                border-radius: 0 0 2.5rem 2.5rem;
+                box-shadow: 0 8px 32px rgba(56,189,248,0.10);
+            }
+            .hero h1 {
+                font-size: 3.5rem;
+                font-weight: 900;
+                letter-spacing: 1.5px;
+                text-shadow: 0 2px 12px rgba(56,189,248,0.10);
+            }
+            .hero p {
+                font-size: 1.4rem;
+                margin-top: 1.2rem;
+                color: #e0e7ff;
+            }
+            .hero-logo {
+                width: 90px;
+                height: 90px;
+                margin-bottom: 1.2rem;
+                border-radius: 50%;
+                background: #fff;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 24px rgba(56,189,248,0.13);
+            }
+            .section-title {
+                color: var(--brand-primary);
+                font-weight: 800;
+                margin-bottom: 1.5rem;
+                letter-spacing: 1.2px;
+                font-size: 2rem;
+            }
+            .feature-icon {
+                font-size: 2.4rem;
+                color: var(--brand-secondary);
+                animation: pulse 2s infinite;
+            }
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.12); }
+                100% { transform: scale(1); }
+            }
+            .card {
+                border: none;
+                border-radius: 1.2rem;
+                box-shadow: var(--brand-shadow);
+                background: var(--brand-card);
+                transition: transform 0.2s, box-shadow 0.2s;
+            }
+            .card:hover {
+                transform: translateY(-8px) scale(1.03);
+                box-shadow: 0 12px 32px rgba(99,102,241,0.13);
+            }
+            .footer {
+                background: var(--brand-primary);
+                color: #fff;
+                text-align: center;
+                padding: 2.5rem 0 1.2rem 0;
+                margin-top: 3rem;
+                border-radius: 1.5rem 1.5rem 0 0;
+                font-size: 1.15rem;
+                letter-spacing: 0.5px;
+                box-shadow: 0 -2px 16px rgba(99,102,241,0.08);
+            }
+            .contact-form input, .contact-form textarea {
+                border-radius: 0.6rem;
+                border: 1px solid #e0e7ff;
+                padding: 0.7rem;
+            }
+            .api-demo-img {
+                max-width: 100%;
+                border-radius: 0.7rem;
+                box-shadow: 0 2px 12px rgba(56,189,248,0.13);
+            }
+            .testimonial-card {
+                background: var(--brand-card);
+                border-radius: 1.2rem;
+                box-shadow: 0 2px 16px rgba(251,191,36,0.08);
+                padding: 2.2rem;
+                margin-bottom: 1.7rem;
+            }
+            .testimonial-quote {
+                font-size: 1.13rem;
+                color: #555;
+            }
+            .testimonial-author {
+                font-weight: 700;
+                color: var(--brand-primary);
+                margin-top: 0.6rem;
+            }
+            .use-case-card {
+                background: #f1f5f9;
+                border-radius: 1.2rem;
+                padding: 1.7rem;
+                margin-bottom: 1.7rem;
+                box-shadow: 0 2px 12px rgba(99,102,241,0.06);
+            }
+            .screenshot-img {
+                max-width: 100%;
+                border-radius: 0.7rem;
+                margin-bottom: 1.1rem;
+                box-shadow: 0 2px 12px rgba(99,102,241,0.10);
+            }
+            .video-demo {
+                width: 100%;
+                max-width: 620px;
+                border-radius: 0.7rem;
+                margin: 1.7rem auto;
+                display: block;
+                box-shadow: 0 2px 12px rgba(56,189,248,0.13);
+            }
+            .team-avatar {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 1.2rem;
+                border: 2px solid var(--brand-secondary);
+            }
+            /* Typography improvements */
+            h1, h2, h3, h4, h5, h6 {
+                font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+                font-weight: 800;
+                letter-spacing: 0.5px;
+            }
+            p, li, span, a, label {
+                font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+                font-size: 1.08rem;
+            }
         </style>
 </head>
 <body>
