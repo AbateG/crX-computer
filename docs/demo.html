@@ -3,35 +3,347 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orchestrix - Demo</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>body{background:#f8fafc;} .section-title{color:#4f46e5;font-weight:700;letter-spacing:1px;} .navbar-brand{font-weight:bold;letter-spacing:2px;color:#4f46e5!important;font-size:1.6rem;} .footer{background:#4f46e5;color:#fff;text-align:center;padding:2rem 0 1rem 0;margin-top:3rem;border-radius:1rem 1rem 0 0;font-size:1.1rem;} .nav-link.active,.nav-link:focus,.nav-link:hover{font-weight:bold;color:#f59e42!important;} .api-demo-img{max-width:100%;border-radius:0.5rem;box-shadow:0 2px 8px rgba(6,182,212,0.12);} </style>
+  <title>Live Demo & API Explorer - CR COMPUTER</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f8fafc; margin: 0; color: #222; }
+    .container { max-width: 900px; margin: 2rem auto; background: #fff; border-radius: 1rem; box-shadow: 0 2px 16px rgba(79,70,229,0.08); padding: 2.5rem 2rem; }
+    h1 { color: #4f46e5; font-size: 2.5rem; margin-bottom: 0.5rem; }
+    h2 { color: #06b6d4; margin-top: 2.5rem; }
+    .endpoint { border-left: 5px solid #4f46e5; padding: 1.2rem 1.5rem; margin: 2rem 0; background: #f1f5f9; border-radius: 0.5rem; }
+    .endpoint .method { font-weight: bold; color: #fff; background: #4f46e5; border-radius: 0.3rem; padding: 0.2rem 0.7rem; margin-right: 0.7rem; }
+    .endpoint .url { font-family: monospace; color: #18181b; }
+    .endpoint label { display: block; margin-top: 1rem; font-weight: 500; }
+    .endpoint input, .endpoint textarea { width: 100%; padding: 0.5rem; border-radius: 0.3rem; border: 1px solid #d1d5db; margin-top: 0.3rem; }
+    .endpoint button { margin-top: 1rem; background: #06b6d4; color: #fff; border: none; border-radius: 0.3rem; padding: 0.6rem 1.2rem; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+    .endpoint button:hover { background: #4f46e5; }
+    .response { background: #18181b; color: #fff; border-radius: 0.5rem; padding: 1rem; margin-top: 1rem; font-size: 0.98rem; overflow-x: auto; }
+    .auth-section { background: #f1f5f9; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 2rem; }
+    .token-label { font-size: 0.95rem; color: #4f46e5; margin-top: 0.5rem; }
+    .copy-btn { background: #f59e42; color: #fff; border: none; border-radius: 0.3rem; padding: 0.3rem 0.7rem; margin-left: 0.5rem; cursor: pointer; font-size: 0.95rem; }
+    .copy-btn:hover { background: #d97706; }
+    .section-title { color: #4f46e5; font-size: 1.3rem; margin-bottom: 0.7rem; }
+    .desc { color: #555; font-size: 1.05rem; margin-bottom: 1.5rem; }
+    @media (max-width: 600px) { .container { padding: 1rem; } }
+  </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+  <nav style="background:#fff;box-shadow:0 2px 8px rgba(79,70,229,0.07);padding:1rem 0 1rem 0;">
+    <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="font-weight:bold;letter-spacing:2px;color:#4f46e5;font-size:1.6rem;text-decoration:none;">CR COMPUTER</a>
+      <div style="display:flex;gap:1.2rem;">
+        <a href="index.html" style="color:#4f46e5;text-decoration:none;font-weight:500;">Home</a>
+        <a href="features.html" style="color:#4f46e5;text-decoration:none;font-weight:500;">Features</a>
+        <a href="demo.html" style="color:#f59e42;text-decoration:none;font-weight:bold;">Live Demo</a>
+        <a href="docs/index.html" style="color:#4f46e5;text-decoration:none;font-weight:500;">Docs</a>
+        <a href="about.html" style="color:#4f46e5;text-decoration:none;font-weight:500;">About</a>
+        <a href="contact.html" style="color:#4f46e5;text-decoration:none;font-weight:500;">Contact</a>
+      </div>
+    </div>
+  </nav>
   <div class="container">
-    <a class="navbar-brand" href="index.html">Orchestrix</a>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
-        <li class="nav-item"><a class="nav-link active" href="demo.html">Demo</a></li>
-        <li class="nav-item"><a class="nav-link" href="docs/index.html">Docs</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+    <h1><i class="fa-solid fa-flask-vial"></i> Live Demo & API Explorer</h1>
+    <div class="desc">Interact with the CR COMPUTER API directly from your browser. Authenticate, explore endpoints, and see real responses in real time.</div>
+    <div style="background:#f1f5f9;border-radius:0.5rem;padding:1.2rem 1.5rem;margin-bottom:2rem;">
+      <b>How to use this explorer:</b>
+      <ul style="margin:0.7rem 0 0.2rem 1.2rem;font-size:1.05rem;">
+        <li><b>Authenticate</b> first using the login or register forms to obtain a JWT token.</li>
+        <li>Use the Projects API forms to fetch, create, update, or delete projects. All requests require a valid JWT token.</li>
+        <li>All API calls are made to your running backend. <b>Ensure the API is accessible and CORS is enabled</b> for browser calls.</li>
+        <li>Errors, loading states, and responses are shown below each form for clarity.</li>
+        <li><b>Limitations:</b> This explorer is for demo/testing. Do not use real passwords or sensitive data. If you see CORS or network errors, check your backend configuration.</li>
       </ul>
+      <div style="color:#d97706;font-size:0.98rem;margin-top:0.5rem;">Need help? See <a href="docs/api-docs.html" style="color:#4f46e5;text-decoration:underline;">API Docs</a> or contact the project maintainer.</div>
+    </div>
+    <div class="auth-section">
+      <div class="section-title"><i class="fa-solid fa-key"></i> Authenticate</div>
+      <form id="login-form">
+        <label>Email: <input type="email" id="login-email" required></label>
+        <label>Password: <input type="password" id="login-password" required></label>
+        <button type="submit">Login</button>
+      </form>
+      <div class="token-label" id="token-label" style="display:none;">JWT Token: <span id="jwt-token"></span> <button class="copy-btn" id="copy-token">Copy</button></div>
+      <hr style="margin:2rem 0 1rem 0;">
+      <div class="section-title"><i class="fa-solid fa-user-plus"></i> Register</div>
+      <form id="register-form">
+        <label>Email: <input type="email" id="register-email" required></label>
+        <label>Password: <input type="password" id="register-password" required></label>
+        <label>First Name: <input type="text" id="register-firstname" required></label>
+        <label>Last Name: <input type="text" id="register-lastname" required></label>
+        <label>Role: <input type="text" id="register-role" required placeholder="e.g. User"></label>
+        <button type="submit">Register</button>
+      </form>
+      <div class="response" id="register-response" style="display:none;"></div>
+    </div>
+    <h2>Projects API</h2>
+    <div class="endpoint">
+      <span class="method">GET</span> <span class="url">/api/projects</span>
+      <form id="get-projects-form">
+        <label>Page Number: <input type="number" id="page-number" value="1" min="1"></label>
+        <label>Page Size: <input type="number" id="page-size" value="10" min="1"></label>
+        <label>Search Term: <input type="text" id="search-term"></label>
+        <button type="submit">Fetch Projects</button>
+      </form>
+      <div class="response" id="get-projects-response" style="display:none;"></div>
+    </div>
+    <div class="endpoint">
+      <span class="method">GET</span> <span class="url">/api/projects/{id}</span>
+      <form id="get-project-form">
+        <label>Project ID: <input type="text" id="project-id"></label>
+        <button type="submit">Fetch Project</button>
+      </form>
+      <div class="response" id="get-project-response" style="display:none;"></div>
+    </div>
+    <div class="endpoint">
+      <span class="method">POST</span> <span class="url">/api/projects</span>
+      <form id="create-project-form">
+        <label>Project Data (JSON): <textarea id="create-project-data" rows="4" placeholder='{"name":"Demo Project","description":"Test"}'></textarea></label>
+        <button type="submit">Create Project</button>
+      </form>
+      <div class="response" id="create-project-response" style="display:none;"></div>
+    </div>
+    <div class="endpoint">
+      <span class="method">PUT</span> <span class="url">/api/projects/{id}</span>
+      <form id="update-project-form">
+        <label>Project ID: <input type="text" id="update-project-id"></label>
+        <label>Update Data (JSON): <textarea id="update-project-data" rows="3" placeholder='{"name":"Updated Name"}'></textarea></label>
+        <button type="submit">Update Project</button>
+      </form>
+      <div class="response" id="update-project-response" style="display:none;"></div>
+    </div>
+    <div class="endpoint">
+      <span class="method">DELETE</span> <span class="url">/api/projects/{id}</span>
+      <form id="delete-project-form">
+        <label>Project ID: <input type="text" id="delete-project-id"></label>
+        <button type="submit">Delete Project</button>
+      </form>
+      <div class="response" id="delete-project-response" style="display:none;"></div>
     </div>
   </div>
-</nav>
-<div class="container">
-  <h1 class="section-title mt-4 mb-4">Live Demo & API Explorer</h1>
-  <p>Try the API locally or explore the documentation below. (Online demo coming soon!)</p>
-  <img src="https://placehold.co/600x350/4f46e5/fff?text=API+Demo+Coming+Soon" alt="API Demo Screenshot" class="api-demo-img my-4">
-  <div class="mt-4">
-  <a href="https://github.com/AbateG/orchestrix" class="btn btn-primary me-2">View on GitHub</a>
-    <a href="docs/api-docs.html" class="btn btn-outline-secondary">API Docs</a>
-  </div>
-</div>
-<footer class="footer mt-5">&copy; 2025 AbateG — Orchestrix</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <footer style="background:#4f46e5;color:#fff;text-align:center;padding:2rem 0 1rem 0;margin-top:3rem;border-radius:1rem 1rem 0 0;font-size:1.1rem;">&copy; 2025 AbateG — CR COMPUTER</footer>
+  <script>
+    // --- Helper: Show loading, error, and success ---
+    function showLoading(div) {
+      div.style.display = '';
+      div.textContent = 'Loading...';
+      div.style.background = '#f59e42';
+      div.style.color = '#fff';
+    }
+    function showError(div, msg) {
+      div.style.display = '';
+      div.textContent = 'Error: ' + msg;
+      div.style.background = '#dc2626';
+      div.style.color = '#fff';
+    }
+    function showSuccess(div, msg) {
+      div.style.display = '';
+      div.textContent = msg;
+      div.style.background = '#16a34a';
+      div.style.color = '#fff';
+    }
+    function showResponse(div, data) {
+      div.style.display = '';
+      div.style.background = '#18181b';
+      div.style.color = '#fff';
+      div.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+    }
+
+    // --- Auth: Register ---
+    document.getElementById('register-form').onsubmit = async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('register-email').value;
+      const password = document.getElementById('register-password').value;
+      const firstName = document.getElementById('register-firstname').value;
+      const lastName = document.getElementById('register-lastname').value;
+      const role = document.getElementById('register-role').value;
+      const respDiv = document.getElementById('register-response');
+      showLoading(respDiv);
+      try {
+        const res = await fetch(`${API_BASE}/auth/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, firstName, lastName, role })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          showSuccess(respDiv, 'Registration successful! You can now log in.');
+        } else {
+          showError(respDiv, data.message || JSON.stringify(data));
+        }
+      } catch (err) {
+        showError(respDiv, err.message || 'Network error');
+      }
+    };
+    // --- API Base URL (adjust for deployment) ---
+    const API_BASE = location.origin.replace(/\/docs.*/, '') + '/api';
+    let jwtToken = '';
+
+    // --- Auth: Login ---
+    document.getElementById('login-form').onsubmit = async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      const respDiv = document.getElementById('token-label');
+      showLoading(respDiv);
+      try {
+        const res = await fetch(`${API_BASE}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (res.ok && data.token) {
+          jwtToken = data.token;
+          respDiv.style.display = '';
+          document.getElementById('jwt-token').textContent = jwtToken.slice(0, 32) + '...';
+          showSuccess(respDiv, 'Login successful! JWT token ready.');
+          setTimeout(() => {
+            respDiv.style.background = '';
+            respDiv.style.color = '#4f46e5';
+            respDiv.innerHTML = 'JWT Token: <span id="jwt-token">' + jwtToken.slice(0,32) + '...</span> <button class="copy-btn" id="copy-token">Copy</button>';
+            document.getElementById('copy-token').onclick = function() {
+              navigator.clipboard.writeText(jwtToken);
+              this.textContent = 'Copied!';
+              setTimeout(() => { this.textContent = 'Copy'; }, 1200);
+            };
+          }, 1200);
+        } else {
+          document.getElementById('token-label').style.display = 'none';
+          showError(respDiv, data.message || 'Login failed');
+        }
+      } catch (err) {
+        showError(respDiv, err.message || 'Network error');
+      }
+    };
+    document.getElementById('copy-token').onclick = function() {
+      navigator.clipboard.writeText(jwtToken);
+      this.textContent = 'Copied!';
+      setTimeout(() => { this.textContent = 'Copy'; }, 1200);
+    };
+
+    // --- Helper: Auth header ---
+    function authHeaders() {
+      return jwtToken ? { 'Authorization': 'Bearer ' + jwtToken } : {};
+    }
+
+    // --- GET /api/projects ---
+    document.getElementById('get-projects-form').onsubmit = async function(e) {
+      e.preventDefault();
+      const pageNumber = document.getElementById('page-number').value;
+      const pageSize = document.getElementById('page-size').value;
+      const searchTerm = document.getElementById('search-term').value;
+      const respDiv = document.getElementById('get-projects-response');
+      showLoading(respDiv);
+      let url = `${API_BASE}/projects?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+      if (searchTerm) url += `&searchTerm=${encodeURIComponent(searchTerm)}`;
+      try {
+        const res = await fetch(url, { headers: authHeaders() });
+        const data = await res.json();
+        if (res.ok) {
+          showResponse(respDiv, data);
+        } else {
+          showError(respDiv, data.message || JSON.stringify(data));
+        }
+      } catch (err) {
+        showError(respDiv, err.message || 'Network error');
+      }
+    };
+
+    // --- GET /api/projects/{id} ---
+    document.getElementById('get-project-form').onsubmit = async function(e) {
+      e.preventDefault();
+      const id = document.getElementById('project-id').value;
+      const respDiv = document.getElementById('get-project-response');
+      if (!id) return showError(respDiv, 'Project ID required');
+      showLoading(respDiv);
+      try {
+        const res = await fetch(`${API_BASE}/projects/${id}`, { headers: authHeaders() });
+        const data = await res.json();
+        if (res.ok) {
+          showResponse(respDiv, data);
+        } else {
+          showError(respDiv, data.message || JSON.stringify(data));
+        }
+      } catch (err) {
+        showError(respDiv, err.message || 'Network error');
+      }
+    };
+
+    // --- POST /api/projects ---
+    document.getElementById('create-project-form').onsubmit = async function(e) {
+      e.preventDefault();
+      const respDiv = document.getElementById('create-project-response');
+      let body;
+      try { body = JSON.parse(document.getElementById('create-project-data').value); }
+      catch { return showError(respDiv, 'Invalid JSON'); }
+      showLoading(respDiv);
+      try {
+        const res = await fetch(`${API_BASE}/projects`, {
+          method: 'POST',
+          headers: { ...authHeaders(), 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (res.ok) {
+          showResponse(respDiv, data);
+        } else {
+          showError(respDiv, data.message || JSON.stringify(data));
+        }
+      } catch (err) {
+        showError(respDiv, err.message || 'Network error');
+      }
+    };
+
+    // --- PUT /api/projects/{id} ---
+    document.getElementById('update-project-form').onsubmit = async function(e) {
+      e.preventDefault();
+      const id = document.getElementById('update-project-id').value;
+      const respDiv = document.getElementById('update-project-response');
+      let body;
+      try { body = JSON.parse(document.getElementById('update-project-data').value); }
+      catch { return showError(respDiv, 'Invalid JSON'); }
+      showLoading(respDiv);
+      try {
+        const res = await fetch(`${API_BASE}/projects/${id}`, {
+          method: 'PUT',
+          headers: { ...authHeaders(), 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if (res.status === 204) {
+          showSuccess(respDiv, 'Project updated successfully.');
+        } else {
+          const data = await res.text();
+          showError(respDiv, data);
+        }
+      } catch (err) {
+        showError(respDiv, err.message || 'Network error');
+      }
+    };
+
+    // --- DELETE /api/projects/{id} ---
+    document.getElementById('delete-project-form').onsubmit = async function(e) {
+      e.preventDefault();
+      const id = document.getElementById('delete-project-id').value;
+      const respDiv = document.getElementById('delete-project-response');
+      showLoading(respDiv);
+      try {
+        const res = await fetch(`${API_BASE}/projects/${id}`, {
+          method: 'DELETE',
+          headers: authHeaders()
+        });
+        if (res.status === 204) {
+          showSuccess(respDiv, 'Project deleted successfully.');
+        } else {
+          const data = await res.text();
+          showError(respDiv, data);
+        }
+      } catch (err) {
+        showError(respDiv, err.message || 'Network error');
+      }
+    };
+  </script>
+</body>
+</html>
 </body>
 </html>
